@@ -3,23 +3,43 @@ entries:
   accesschart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-12-15T18:06:28.657993415+01:00"
+    created: "2023-01-08T18:55:59.763140229+01:00"
     description: A Helm chart for Kubernetes
-    digest: a3ccad96d917f695783dd1b80c74c0db48630cba998178ed870e6a1cdb3d9bd3
+    digest: 75515187276465e03894e7abac107ac1ad42b93ff7e859d5610f1a6c734b6c82
     name: accesschart
     type: application
     urls:
-    - https://cuenta-git.github.io/repo-rdsv/accesschart-0.1.0.tgz
+    - https://fdbe98.github.io/repo-rdsv/accesschart-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-01-08T18:55:59.770414654+01:00"
+    description: A Helm chart for Kubernetes
+    digest: b6eff9cf299a4f1d7c806421e0fef9f39e59e31e15777f56a872f3cfe3303766
+    name: accesschart
+    type: application
+    urls:
+    - https://fdbe98.github.io/repo-rdsv/nfv-lab/accesschart-0.1.0.tgz
     version: 0.1.0
   cpechart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-12-15T18:06:28.659951943+01:00"
+    created: "2023-01-08T18:55:59.765197579+01:00"
     description: A Helm chart for Kubernetes
-    digest: 692ee0b122d95775caf9d81edcc3e77d66ee294649ab4ace012e06da5794f975
+    digest: f0528a7ff60552a9ae56fa076216ea2beb49fca7f1a4db5807b8cba70e196440
     name: cpechart
     type: application
     urls:
-    - https://cuenta-git.github.io/repo-rdsv/cpechart-0.1.0.tgz
+    - https://fdbe98.github.io/repo-rdsv/cpechart-0.1.0.tgz
     version: 0.1.0
-generated: "2022-12-15T18:06:28.655624936+01:00"
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-01-08T18:55:59.774232493+01:00"
+    description: A Helm chart for Kubernetes
+    digest: 33e7a2973a7664e175bccb21815e3fa0aaf2e41a8d6a41e8a15490f2c4e0136b
+    name: cpechart
+    type: application
+    urls:
+    - https://fdbe98.github.io/repo-rdsv/nfv-lab/cpechart-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-01-08T18:55:59.760910712+01:00"
