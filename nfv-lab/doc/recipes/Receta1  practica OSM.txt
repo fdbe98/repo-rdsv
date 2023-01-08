@@ -1,0 +1,174 @@
+UNA VEZ REGISTRADO EL CLUSTER DE K8S EN OSM:
+
+registrar el cluster para que kubectl acceda desde la máquina OSM:
+- en la máquina K8S
+$ microk8s config 
+
+en la máquina OSM, editar el fichero ~/.kube/config y pegar el texto resultado
+del comando anterior al final del fichero
+Después, cambiar la línea 
+server: https://10.0.2.15:16443
+para que sea la dirección alcanzable del k8s
+server: https://192.168.56.11:16443
+
+probar por ejemplo con 
+$ kubectl get namespaces
+comprobar que sale el namespace remoto registrado para osm
+7b2950d8-f92b-4041-9a55-8d1837ad7b0a
+
+#VNXLAB2022-v3 (los de AccessNet2 y ExtNet2 creo que no hacen falta)
+sudo ovs-vsctl add-br ExtNet1
+
+sudo ovs-vsctl add-br AccessNet1
+
+sudo ovs-vsctl add-br AccessNet2
+
+sudo ovs-vsctl add-br ExtNet2
+
+export OSMNS="7b2950d8-f92b-4041-9a55-8d1837ad7b0a"
+
+sudo cat <<EOF | microk8s kubectl -n $OSMNS create -f -
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: accessnet1
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: ovs-cni.network.kubevirt.io/accessnet1
+spec:
+ config: '{
+     "cniVersion": "0.4.0",
+     "type": "ovs",
+      "bridge": "AccessNet1"
+  }'
+EOF
+
+sudo cat <<EOF | microk8s kubectl -n $OSMNS create -f -
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: extnet1
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: ovs-cni.network.kubevirt.io/extnet1
+spec:
+  config: '{
+    "cniVersion": "0.4.0",
+    "type": "ovs",
+    "bridge": "ExtNet1"
+  }'
+EOF
+
+
+#VNXNFVLAB2022-v1
+osm repo-add --type helm-chart --description "Repo para practica OSM" helmchartrepo https://josevirseda.github.io/Helm/
+
+osm package-create --vendor educaredes vnf accessknf
+osm package-create --vendor educaredes vnf cpeknf
+osm package-create --vendor educaredes ns renes
+osm package-build --skip-charm-build FOLDER
+
+export LASTNS=$(osm ns-create --ns_name renes1 --nsd_name renes --vim_account dummy_vim)
+para borrarlo
+osm ns-delete $LASTNS
+para ver cuando se instancia
+watch -n 5 osm ns-list
+
+Obtener chart de una VNF: 
+osm vnf-show --literal $VNFID | grep name | grep access |  awk '{split($0,a,":");print a[2]}'
+
+
+Obtener identificadores de los DEPLOYMENT de un servicio "renes1"
+export NSTEXT=renes1
+for i in access cpe; do 
+  osm ns-list | grep $NSTEXT | awk '{split($0,a,"|");print a[3]}' | xargs osm vnf-list --ns | grep $i | awk '{split($0,a,"|");print a[2]}' | xargs osm vnf-show --literal | grep name | grep $i | awk '{split($0,a,":");print a[2]}'
+done
+
+Copiar y pegar el resultado en una ventana de la máquina k8s
+
+export VACC1=helmchartrepo-accesschart-...
+export VCPE1=helmchartrepo-cpechart-...
+
+# OLD A partir del identificador parcial, en la maquina k8s, fijar variable para abrir consolas
+export OSMNS="7b2950d8-f92b-4041-9a55-8d1837ad7b0a"
+export VACC1=$(microk8s kubectl -n $OSMNS get pods | grep helmchartrepo-accesschart-0023192822 | awk '{print $1}')
+export VCPE1=$( microk8s kubectl -n $OSMNS get pods | grep helmchartrepo-cpechart-0091594704 | awk '{print $1}')
+
+
+
+# OLD Sin identificador parcial, con un solo servicio de red en la maquina k8s, fijar variable para abrir consolas
+export OSMNS="7b2950d8-f92b-4041-9a55-8d1837ad7b0a"
+export VCPE1=$(microk8s kubectl -n $OSMNS get pods | grep helmchartrepo-cpechart | awk '{print $1}')
+export VACC1=$(microk8s kubectl -n $OSMNS get pods | grep helmchartrepo-accesschart | awk '{print $1}')
+
+
+Abrir consola 
+
+microk8s kubectl exec -n $OSMNS -it deploy/$VACC1 -- /bin/bash
+
+microk8s kubectl exec -n $OSMNS -it deploy/$VCPE1 -- /bin/bash
+
+
+TRAS ELLO, CREAR LOS ESCENARIOS VNX Y HACER LO DE "Configuracion rutas practica OSM"
+
+Troubleshooting
+
+Para pods que aparecen sin que los queramos --> borrar los deployments
+
+microk8s kubectl get deployments -n $OSMNS # obtenemos los nombres a borrar, DEPLOYMENT, sirve también para ver si los deployments están READY
+
+microk8s kubectl delete -n $OSMNS deployment DEPLOYMENT
+
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-deployments-and-services
+
+
+Mirar 
+osm k8scluster-list
+
+El id del cluster se usa en:
+
+osm k8scluster-show <id>
+osm k8scluster-show --literal <id>  | grep -A1 projects
+
+Output: valores de configuración projects_read/projects_write contienen el
+namespace asociado a OSM en el cluster 
+
+Problemas en X y root 
+sudo xauth add $(xauth list | tail -1)
+
+Conectar dos máquinas del laboratorio con túneles
+
+En PC-OSM
+ovs-vsctl add-br rdsvlab
+vboxmanage modifyvm RDSV-OSM --nic2 bridged --bridgeadapter2 rdsvlab
+sudo ip address add  192.168.56.2/24 dev rdsvlab
+sudo ip link set dev rdsvlab mtu 1400
+sudo ip link set rdsvlab up
+vboxmanage startvm RDSV-OSM --type headless
+sudo ovs-vsctl add-port rdsvlab vxlanosm -- set interface vxlanosm type=vxlan options:remote_ip=138.4.31.124
+
+
+En PC-K8S
+sudo ovs-vsctl add-br rdsvlab
+vboxmanage modifyvm RDSV-K8S --nic2 bridged --bridgeadapter2 rdsvlab
+sudo ip address add  192.168.56.1/24 dev rdsvlab
+sudo ip link set dev rdsvlab mtu 1400
+sudo ip link set rdsvlab up
+vboxmanage startvm RDSV-K8S --type headless
+sudo ovs-vsctl add-port rdsvlab vxlanosm -- set interface vxlanosm type=vxlan options:remote_ip=138.4.31.125
+
+
+
+
+  897  ifconfig rdsvlab 192.168.56.1/24
+  898  vboxmanage startvm RDSV-OSM --type headless
+  899  ping 192.168.56.12
+  900  ovs-vsctl add-br rdsvlab2
+  901  vboxmanage modifyvm RDSV-K8S --nic2 bridged --bridgeadapter2 rdsvlab2
+  902  ovs-vsctl add-port rdsvlab vxlanosm -- set interface vxlanosm type=vxlan options:remote_ip=127.0.0.1
+  903  ovs-vsctl add-port rdsvlab2 vxlank8s -- set interface vxlank8s  type=vxlan options:remote_ip=127.0.0.1
+  904  less /var/log/openvswitch
+  905  ls /var/log/openvswitch
+  906  tail  /var/log/openvswitch/ovs-vswitchd.log
+  907  ovs-vsctl add-port rdsvlab2 vxlank8s -- set interface vxlank8s  type=vxlan options:remote_ip=127.0.0.1 options:key=1
+  908  ovs-vsctl  set interface vxlank8s  type=vxlan options:remote_ip=127.0.0.1 options:key=1
+  909  ovs-vsctl show
+  910  vboxmanage startvm RDSV-K8S --type headless
