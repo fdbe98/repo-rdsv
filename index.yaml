@@ -9,7 +9,7 @@ entries:
     name: accesschart
     type: application
     urls:
-    - https://github.com/fdbe98/repo-rdsv/accesschart-0.1.0.tgz
+    - https://fdbe98.github.io/repo-rdsv/accesschart-0.1.0.tgz
     version: 0.1.0
   arpwatch:
   - apiVersion: v2
@@ -20,7 +20,7 @@ entries:
     name: arpwatch
     type: application
     urls:
-    - https://github.com/fdbe98/repo-rdsv/arpwatch-0.1.0.tgz
+    - https://fdbe98.github.io/repo-rdsv/arpwatch-0.1.0.tgz
     version: 0.1.0
   cpechart:
   - apiVersion: v2
@@ -31,6 +31,6 @@ entries:
     name: cpechart
     type: application
     urls:
-    - https://github.com/fdbe98/repo-rdsv/cpechart-0.1.0.tgz
+    - https://fdbe98.github.io/repo-rdsv/cpechart-0.1.0.tgz
     version: 0.1.0
 generated: "2023-01-11T20:38:15.019546354+01:00"
