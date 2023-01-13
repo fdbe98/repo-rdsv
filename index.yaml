@@ -3,34 +3,54 @@ entries:
   accesschart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-01-11T20:38:15.021174334+01:00"
+    created: "2023-01-13T15:58:44.493741424+01:00"
     description: A Helm chart for Kubernetes
-    digest: d22314f20cfa7b9e8848693dffed5106356498f8bd817de73b28d4ffc8e7dbda
+    digest: b681b68c6a56a9579dfe987bba96e5c3f3700dedb6133ef0d15575ce6a44e49c
     name: accesschart
     type: application
     urls:
-    - https://fdbe98.github.io/repo-rdsv/accesschart-0.1.0.tgz
+    - https://cuenta-git.github.io/repo-rdsv/accesschart-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-01-13T15:58:44.507579745+01:00"
+    description: A Helm chart for Kubernetes
+    digest: b6eff9cf299a4f1d7c806421e0fef9f39e59e31e15777f56a872f3cfe3303766
+    name: accesschart
+    type: application
+    urls:
+    - https://cuenta-git.github.io/repo-rdsv/nfv-lab/accesschart-0.1.0.tgz
     version: 0.1.0
   arpwatch:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-01-11T20:38:15.022351415+01:00"
+    created: "2023-01-13T15:58:44.497226607+01:00"
     description: A Helm chart for Kubernetes
     digest: 002aca402963d5ef0eb8820ed45cb4b6988379a3754ce37640452ade31f9d96d
     name: arpwatch
     type: application
     urls:
-    - https://fdbe98.github.io/repo-rdsv/arpwatch-0.1.0.tgz
+    - https://cuenta-git.github.io/repo-rdsv/arpwatch-0.1.0.tgz
     version: 0.1.0
   cpechart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-01-11T20:38:15.02353766+01:00"
+    created: "2023-01-13T15:58:44.499547131+01:00"
     description: A Helm chart for Kubernetes
-    digest: 0a6e7361c53964be675074f1c5e457657800c6d02a59ff36d278a8f266d93443
+    digest: 29e52947a14d196690f01f31065a6f102f9ffc7cf016d3522d25cf5e47cf360b
     name: cpechart
     type: application
     urls:
-    - https://fdbe98.github.io/repo-rdsv/cpechart-0.1.0.tgz
+    - https://cuenta-git.github.io/repo-rdsv/cpechart-0.1.0.tgz
     version: 0.1.0
-generated: "2023-01-11T20:38:15.019546354+01:00"
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-01-13T15:58:44.510697821+01:00"
+    description: A Helm chart for Kubernetes
+    digest: 33e7a2973a7664e175bccb21815e3fa0aaf2e41a8d6a41e8a15490f2c4e0136b
+    name: cpechart
+    type: application
+    urls:
+    - https://cuenta-git.github.io/repo-rdsv/nfv-lab/cpechart-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-01-13T15:58:44.490873556+01:00"
