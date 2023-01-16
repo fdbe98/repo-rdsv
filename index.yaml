@@ -3,7 +3,7 @@ entries:
   accesschart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-01-13T15:58:44.493741424+01:00"
+    created: "2023-01-16T11:46:24.645197063+01:00"
     description: A Helm chart for Kubernetes
     digest: b681b68c6a56a9579dfe987bba96e5c3f3700dedb6133ef0d15575ce6a44e49c
     name: accesschart
@@ -11,12 +11,22 @@ entries:
     urls:
     - https://fdbe98.github.io/repo-rdsv/accesschart-0.1.0.tgz
     version: 0.1.0
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-01-16T11:46:24.655745343+01:00"
+    description: A Helm chart for Kubernetes
+    digest: b6eff9cf299a4f1d7c806421e0fef9f39e59e31e15777f56a872f3cfe3303766
+    name: accesschart
+    type: application
+    urls:
+    - https://fdbe98.github.io/repo-rdsv/nfv-lab/accesschart-0.1.0.tgz
+    version: 0.1.0
   arpwatch:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-01-13T15:58:44.497226607+01:00"
+    created: "2023-01-16T11:46:24.648487125+01:00"
     description: A Helm chart for Kubernetes
-    digest: 002aca402963d5ef0eb8820ed45cb4b6988379a3754ce37640452ade31f9d96d
+    digest: b03e27661d1e1e3c3295b50a2acb170adbc27f7394d0563b1e2aeaaec52de449
     name: arpwatch
     type: application
     urls:
@@ -25,7 +35,7 @@ entries:
   cpechart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-01-13T15:58:44.499547131+01:00"
+    created: "2023-01-16T11:46:24.652247584+01:00"
     description: A Helm chart for Kubernetes
     digest: 29e52947a14d196690f01f31065a6f102f9ffc7cf016d3522d25cf5e47cf360b
     name: cpechart
@@ -33,4 +43,14 @@ entries:
     urls:
     - https://fdbe98.github.io/repo-rdsv/cpechart-0.1.0.tgz
     version: 0.1.0
-generated: "2023-01-13T15:58:44.490873556+01:00"
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-01-16T11:46:24.659221377+01:00"
+    description: A Helm chart for Kubernetes
+    digest: 33e7a2973a7664e175bccb21815e3fa0aaf2e41a8d6a41e8a15490f2c4e0136b
+    name: cpechart
+    type: application
+    urls:
+    - https://fdbe98.github.io/repo-rdsv/nfv-lab/cpechart-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-01-16T11:46:24.641476832+01:00"
