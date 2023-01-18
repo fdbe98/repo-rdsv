@@ -3,34 +3,23 @@ entries:
   accesschart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-01-16T11:51:34.379983433+01:00"
+    created: "2023-01-18T16:29:34.309168522+01:00"
     description: A Helm chart for Kubernetes
-    digest: b681b68c6a56a9579dfe987bba96e5c3f3700dedb6133ef0d15575ce6a44e49c
+    digest: fe6f46e0c8996b9720711c5ad7c120bc3a0cc9bb581912a8b649ffa7a6bd4b96
     name: accesschart
     type: application
     urls:
     - https://fdbe98.github.io/repo-rdsv/accesschart-0.1.0.tgz
     version: 0.1.0
-  arpwatch:
-  - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2023-01-16T11:51:34.382989673+01:00"
-    description: A Helm chart for Kubernetes
-    digest: b03e27661d1e1e3c3295b50a2acb170adbc27f7394d0563b1e2aeaaec52de449
-    name: arpwatch
-    type: application
-    urls:
-    - https://fdbe98.github.io/repo-rdsv/arpwatch-0.1.0.tgz
-    version: 0.1.0
   cpechart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-01-16T11:51:34.385373004+01:00"
+    created: "2023-01-18T16:29:34.311283854+01:00"
     description: A Helm chart for Kubernetes
-    digest: 29e52947a14d196690f01f31065a6f102f9ffc7cf016d3522d25cf5e47cf360b
+    digest: 31e357606dd6a1d9b90c25ebbdac648684aa2d0862e7fee00c82ab7db1d55f69
     name: cpechart
     type: application
     urls:
     - https://fdbe98.github.io/repo-rdsv/cpechart-0.1.0.tgz
     version: 0.1.0
-generated: "2023-01-16T11:51:34.37700734+01:00"
+generated: "2023-01-18T16:29:34.301239309+01:00"
